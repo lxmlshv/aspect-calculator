@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Расчет наиболее точного соотношения</title>
+    <title>Calculation of the most accurate ratio</title>
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet" />
@@ -24,7 +24,7 @@
       <div class="grid grid-cols-2">
         <div class="mb-4">
           <label for="number1" class="block text-gray-700 font-bold mb-2"
-            >Первое число:</label
+            >First number:</label
           >
           <input
             x-model="number1"
@@ -34,7 +34,7 @@
         </div>
         <div class="mb-4">
           <label for="number2" class="block text-gray-700 font-bold mb-2"
-            >Второе число:</label
+            >Second number:</label
           >
           <input
             x-model="number2"
@@ -47,7 +47,7 @@
         <label
           for="maxLimit"
           class="block text-gray-700 font-bold mb-2"
-          x-text="'Максимальный предел: ' + maxLimit"></label>
+          x-text="'Maximum limit fr: ' + maxLimit"></label>
         <input
           x-model="maxLimit"
           id="maxLimit"
@@ -76,7 +76,7 @@
           }
         }
 
-        return `Наиболее точное приближенное соотношение для ${num1} к ${num2}: ${bestRatio} (погрешность ${bestDelta.toFixed(
+        return `The most accurate ratio for ${num1} and ${num2}: ${bestRatio} (error ${bestDelta.toFixed(
           5
         )})`;
       }
