@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Расчет наиболее точного соотношения</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+  <body class="bg-gray-100 p-4">
+    <div
+      class="max-w-lg mx-auto"
+      x-data="{
+      number1: 984,
+      number2: 395,
+      maxLimit: 10,
+      result: ''
+    }"
+      x-effect="result = findBestRatio(number1, number2, maxLimit)">
+      <div class="grid grid-cols-2">
+        <div class="mb-4">
+          <label for="number1" class="block text-gray-700 font-bold mb-2"
+            >Первое число:</label
+          >
+          <input
+            x-model="number1"
+            id="number1"
+            type="number"
+            class="w-24 border border-gray-300 rounded py-1 px-3" />
+        </div>
+        <div class="mb-4">
+          <label for="number2" class="block text-gray-700 font-bold mb-2"
+            >Второе число:</label
+          >
+          <input
+            x-model="number2"
+            id="number2"
+            type="number"
+            class="w-24 border border-gray-300 rounded py-1 px-3" />
+        </div>
+      </div>
+      <div class="mb-4">
+        <label
+          for="maxLimit"
+          class="block text-gray-700 font-bold mb-2"
+          x-text="'Максимальный предел: ' + maxLimit"></label>
+        <input
+          x-model="maxLimit"
+          id="maxLimit"
+          type="range"
+          min="1"
+          max="40"
+          class="w-full"
+          step="1" />
+      </div>
+      <p x-text="result" class="mt-4 text-gray-800 font-bold"></p>
+    </div>
+    <script>
+      function findBestRatio(num1, num2, maxLimit) {
+        let bestRatio = "1 к 1";
+        let bestDelta = Math.abs(num1 / num2 - 1);
+
+        for (let i = 1; i <= maxLimit; i++) {
+          for (let j = 1; j <= maxLimit; j++) {
+            const currentRatio = i / j;
+            const currentDelta = Math.abs(num1 / num2 - currentRatio);
+
+            if (currentDelta < bestDelta) {
+              bestRatio = `${i} к ${j}`;
+              bestDelta = currentDelta;
+            }
+          }
+        }
+
+        return `Наиболее точное приближенное соотношение для ${num1} к ${num2}: ${bestRatio} (погрешность ${bestDelta.toFixed(
+          5
+        )})`;
+      }
+    </script>
+  </body>
+</html>
